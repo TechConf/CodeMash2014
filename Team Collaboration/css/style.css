@@ -1,0 +1,57 @@
+.reveal blockquote footer {
+    font-size: 0.7em;
+}
+
+.reveal small > a {
+    padding: 0 0.2em;
+}
+
+hr {
+    border-color: #999;
+}
+
+.conference {
+    height: 83px;
+    right: 17px;
+    top: 17px;
+}
+
+.logo {
+    bottom: 17px;
+    height: 80px;
+    left: 17px;
+}
+
+.conference,
+.logo {
+    display: block;
+    -webkit-filter: grayscale(100%);
+    opacity: 0.3;
+    position: fixed;
+    transition: -webkit-filter 0.5s, opacity 0.5s;
+    z-index: 29;
+}
+
+.conference:hover,
+.logo:hover {
+    opacity: 0.9;
+    -webkit-filter: grayscale(0%);
+}
+
+.timeline dt {
+    float: left;
+    font-style: italic;
+    text-align: left;
+}
+
+.timeline dd {
+    font-size: 80%;
+    margin-bottom: 3%;
+}
+
+.logo .version {
+    color: #aaa;
+    font-size: 0.3em;
+    margin-top: 0.8em;
+    text-align: center;
+}
