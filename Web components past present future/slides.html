@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Title</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style type="text/css">
+      .strikethru { text-decoration: line-through;}
+      <style type="text/css" media="screen">
+      @import url(http://fonts.googleapis.com/css?family=Droid+Serif);
+      @import url(http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: 400;
+        margin-bottom: 0;
+        margin-top: 10px;
+      }
+      h1 { font-size: 3em; }
+      h2 { font-size: 2em; }
+      h3 { font-size: 1.6em; }
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+
+      pre {
+        border-left: 0.4em solid #d7d7d7;
+        padding: 1em !important;
+      }
+      code {
+        background: transparent !important;
+      }
+      a {
+        color: #F92672;
+        text-decoration: none;
+      }
+      .task {
+        float: right;
+        font-size: 0.9em;
+        padding-top: 0.6em;
+      }
+      .task a {
+        color: #080;
+        text-decoration: none;
+      }
+      .right {
+        float: right;
+        margin-left: 1em;
+      }
+      .pushdown {
+        margin-top: 12em;
+      }
+      .shocked img {
+        height: 400px;
+        width: 600px;
+      }
+      .creation img {
+        height: 300px;
+        width: 600px;
+      }
+    </style>
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle
+
+# The past, present, and future of web components
+---
+class: center, middle
+# Hi!
+### Chris Nelson
+![gaslight](logo.png)
+### @superchris
+---
+# Web components...
+.shocked[![shocked](kramer-shocked.gif)]
+## .. are not a new idea
+---
+# Web components past
+![Past](past.jpg)
+---
+class: center, middle
+
+# In the beginning of web MVC frameworks...
+.creation[![creation](creation.jpg)]
+---
+class: center, middle
+# "Classic" MVC
+---
+class: center, middle
+# Focused on mapping urls to server side code
+---
+# It's your job
+## To deal with params
+## Put them onto domain objects
+## Update things in the view
+---
+# Views in classic MVC frameworks
+## Templates that let you embed code in HTML
+## Helpers that output HTML
+---
+# Examples
+## Too numerous to shake a stick at...
+### Struts
+### SpringMVC
+### Play
+### ASP.NET
+### Zend
+### Rails
+---
+class: center, middle
+# Can we do better?
+---
+class: center, middle
+# What if we could respond to user interaction directly?
+## rather than based on which URL the browser was requesting
+---
+class: center, middle
+# What if we could map UI elements to domain objects?
+### rather than dealing with params
+---
+class: center, middle
+# What if we work with POHTML?
+### rather than putting code in our HTML to confuse our designers
+---
+class: center, middle
+# Declarative vs imperative
+---
+# Server side component oriented frameworks
+## WebObjects - 1995
+## Tapestry - 2000
+## Wicket
+## JSF
+## WebForms
+---
+class: center, middle
+# But they call themselves MVC
+---
+class: center, middle
+# What do mean by "component"?
+---
+class: center, middle
+# Display and interaction packaged together
+## More than a helper that outputs html
+---
+class: center, middle
+# Bi-directional api
+---
+class: center, middle
+# Binding
+---
+class: center, middle
+# Composable
+---
+class: center, middle
+# HTML is the templating language
+---
+class: center, middle
+# Ecosystems
+---
+class: center, middle
+# And everyone lived..
+![happily](happilyeverafter.jpg)
+---
+class: center, middle
+# Server side component frameworks are not the .strikethru[future] present
+---
+#Web components present
+![Present](present.jpg)
+---
+class: center, middle
+# What if we could have components in the browser?
+---
+class: center, middle
+# What if we could bend html to our will?
+---
+class: center, middle
+# What if we could bind POJSO to POHTML?
+---
+![angular](AngularJS-large.png)
+## Binding
+## Components = Directives
+## elements, attributes, or classes
+---
+class: center, middle
+# [Blink!](http://jsbin.com/ErOQoLOR/2/edit)
+---
+class: center, middle
+# Angular [ecosystem](http://ngmodules.org/)
+---
+class: center, middle
+# [Fancy grid](http://plnkr.co/edit/50vJrs?p=preview)
+---
+# Web components future
+![future](future.jpg)
+---
+class: center, middle
+# What if we could have web components in the browser in the browser?
+---
+class: center, middle
+# What if we could have web components in the browserer?
+---
+# Web components [spec of specs](http://www.w3.org/TR/components-intro/)
+## Templates
+## Shadow DOM
+## Custom elements
+## Imports
+---
+# Templates
+## a standard DOM-based approach for client-side templating
+## inert chunks of DOM
+## clone them and insert
+```html
+<template id="commentTemplate">
+    <div>
+        <img src="">
+        <div class="comment-text"></div>
+    </div>
+</template>
+<script>
+function addComment(imageUrl, text) {
+  var t = document.querySelector("#commentTemplate");
+  var comment = t.content.cloneNode(true);
+  // Populate content.
+  comment.querySelector('img').src = imageUrl;
+  comment.querySelector('.comment-text').textContent = text;
+  document.body.appendChild(comment);
+}
+</script>
+```
+---
+# Shadow DOM
+## Encapsulation for HTML and CSS
+## Exposes APIs the browsers [already had!](http://www.rbyers.net/chrome-builtin-shadowdom.html)
+## Enable Show Shadow DOM in chrome to see it
+---
+# Make your own shadow DOM
+```javascript
+  var host = document.querySelector('#thing');
+  var root = host.createShadowRoot();
+  root.innerHTML = "<h1>something!</h1>";
+```
+## [Let's see!](http://jsbin.com/iZIYowaZ/2/edit)
+---
+# Content selectors (transclusion)
+## Angular did not make up this word!
+## Lets you separate content from presentation
+## Pulls out chunks from original subtree to put in Shadow DOM
+## Specify css selector with select attribute
+## [Let's see!](http://jsbin.com/OwOfoTap/2/edit?html,javascript  )
+---
+# Custom Elements
+## Define and register your own elements
+## Must have a dash
+```javascript
+var myNewTag = document.registerElement('my-new-tag', {
+  prototype: Object.create(HTMLElement.prototype)
+});
+```
+Then in your document
+```html
+<my-new-tag></my-new-tag>
+```
+Which does nothing... yet!
+---
+# Lifecycle callbacks
+## Methods on the prototype of your custom element
+## createdCallback
+## attachedCallback
+## detachedCallback
+## attributeChangedCallback
+---
+class: middle, center
+# Putting it all [together](http://jsbin.com/uBeFakU/2/edit)
+---
+# HTML Imports
+## Allows you import a document into another
+## Can include html, css, javascript
+## js executes but html is not rendered
+```html
+<link rel="import" href="imported.html" />
+```
+## Perfect for bundling custom elements!
+---
+# Polymer
+## bringing the future closer
+## polyfills for modern browsers
+## "prollyfills" for stuff that isn't spec'd :)
+---
+<iframe src="architecture-diagram.svg"></iframe>
+---
+# Polymer demo
+---
+class: center, middle
+# Let's see [some](http://customelements.io)
+---
+# Resources
+## https://github.com/gaslight/codemash2014
+## http://html5-demos.appspot.com/
+## html5rocks.com
+---
+</textarea>
+    <script src="./remark-0.5.9.min.js" type="text/javascript">
+    </script>
+    <script type="text/javascript">
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
